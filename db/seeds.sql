@@ -17,3 +17,13 @@ VALUES
 ("Mechanical Engineer", 150000, 4),
 ("Lead Engineer", 200000, 4);
 
+INSERT INTO employee (first_name, last_name, role_id, manager_id)
+VALUES
+("John", "Doe", 1, 3),
+("Mike", "Chan", 2, 1),
+("Ashley", "Rodriguez", 9, null),
+("Kevin", "Tupik", 7, 3),
+("Malia", "Brown", 3, null),
+("Sarah", "Lourd", 6, null),
+("Tom", "Allen", 5, 6),
+("Christian", "Eckenrode", 8, 3);
