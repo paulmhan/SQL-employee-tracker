@@ -23,14 +23,33 @@ function promptUser() {
                 ]
             }
         ])
-        .then(function(answer) {
-            switch (answer.action){
-                case 'Add Department': {
+        .then(function (answer) {
+            switch (answer.action) {
+                case "Add Department":
                     addDepartment();
-                    // console.log("Hello");
                     break;
-                }
-        };
-})}
+                case "Add Role":
+                    addRole();
+                    break;
+                case "Add Employee":
+                    addEmployee();
+                    break;
+                case "View All Departments":
+                    viewDepartments();
+                    break;
+                case "View All Roles":
+                    viewRoles();
+                    break;
+                case "View All Employees":
+                    viewEmployees();
+                    break;
+                case "Update Employee Role":
+                    updateEmployee();
+                    break;
+                case "Exit":
+                    return;
+            };
+        })
+}
 
 promptUser();
