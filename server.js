@@ -26,25 +26,25 @@ function promptUser() {
         .then(function (answer) {
             switch (answer.action) {
                 case "Add Department":
-                    addDepartment();
+                    orm.addDepartment();
                     break;
                 case "Add Role":
-                    addRole();
+                    orm.addRole();
                     break;
                 case "Add Employee":
-                    addEmployee();
+                    orm.addEmployee();
                     break;
                 case "View All Departments":
-                    viewDepartments();
+                    orm.viewDepartments();
                     break;
                 case "View All Roles":
-                    viewRoles();
+                    orm.viewRoles();
                     break;
                 case "View All Employees":
-                    viewEmployees();
+                    orm.viewEmployees();
                     break;
                 case "Update Employee Role":
-                    updateEmployee();
+                    orm.updateEmployee();
                     break;
                 case "Exit":
                     return;
