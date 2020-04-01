@@ -1,6 +1,6 @@
 //my sql boilerplate
 const mysql = require("mysql");
-var orm = require("../models/orm.js");
+const orm = require("../models/orm.js");
 
 const connection = mysql.createConnection({
   host: "localhost",

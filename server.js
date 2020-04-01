@@ -1,5 +1,6 @@
 const inquirer = require("inquirer");
 const cTable = require('console.table');
+const controller = require("./controllers/index.js")
 
 function promptUser() {
     inquirer
@@ -26,25 +27,25 @@ function promptUser() {
         .then(function (answer) {
             switch (answer.action) {
                 case "Add Department":
-                    orm.addDepartment();
+                    controller.addDepartment();
                     break;
                 case "Add Role":
-                    orm.addRole();
+                    controller.addRole();
                     break;
                 case "Add Employee":
-                    orm.addEmployee();
+                    controller.addEmployee();
                     break;
                 case "View All Departments":
-                    orm.viewDepartments();
+                    controller.viewDepartments();
                     break;
                 case "View All Roles":
-                    orm.viewRoles();
+                    controller.viewRoles();
                     break;
                 case "View All Employees":
-                    orm.viewEmployees();
+                    controller.viewEmployees();
                     break;
                 case "Update Employee Role":
-                    orm.updateEmployee();
+                    controller.updateEmployee();
                     break;
                 case "Exit":
                     return;
