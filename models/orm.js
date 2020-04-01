@@ -23,8 +23,12 @@ const orm = {
         if (err) {
           throw err;
         }
-  
-        cb(result);
+        connection.query(`SELECT * FROM ${table} WHERE id = ${result.insertId} `, function(err,res){
+            if (err){
+                throw err;
+            }
+            cb(res);
+        })
       });
     },
     // An example of objColVals would be {name: panther, sleepy: true}

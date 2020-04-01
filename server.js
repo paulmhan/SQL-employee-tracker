@@ -3,6 +3,7 @@ const cTable = require('console.table');
 const controller = require("./controllers/index.js")
 
 
+
 function promptUser() {
     inquirer
         .prompt([
@@ -31,7 +32,7 @@ function promptUser() {
                     promptAddDepartment();
                     break;
                 case "Add Role":
-                    controller.addRole();
+                    promptAddRole();
                     break;
                 case "Add Employee":
                     promptAddEmployee();
@@ -77,12 +78,45 @@ function promptAddDepartment() {
         ])
         .then(function (answer) {
             let departmentName = answer.department;
-            controller.addDepartment(departmentName, function(res){
+            controller.addDepartment(departmentName, function (res) {
                 console.table(res);
                 promptUser();
             });
         });
 }
+
+function promptAddRole() {
+    controller.viewDepartments(function (res) {
+        let departmentNames = res.map(dept => dept.name);
+        inquirer.prompt(
+            [
+                {
+                    type: "input",
+                    name: "role",
+                    message: "What is the title of this role?"
+                },
+                {
+                    type: "input",
+                    name: "salary",
+                    message: "What is the salary for this role?"
+                },
+                {
+                    type: "list",
+                    name: "department",
+                    message: "Which department is this role in?",
+                    choice: departmentNames
+                },
+            ])
+            .then(function (answer) {
+                let newRole = [answer.role, answer.salary, answer.department];
+                controller.addRole(newRole, function (res) {
+                    console.table(res);
+                    promptUser();
+                });
+            });
+    });
+}
+
 
 
 
