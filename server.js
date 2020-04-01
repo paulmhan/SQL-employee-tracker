@@ -28,12 +28,13 @@ function promptUser() {
         .then(function (answer) {
             switch (answer.action) {
                 case "Add Department":
-                    controller.addDepartment();
+                    promptAddDepartment();
                     break;
                 case "Add Role":
                     controller.addRole();
                     break;
                 case "Add Employee":
+                    promptAddEmployee();
                     controller.addEmployee();
                     break;
                 case "View All Departments":
@@ -63,5 +64,32 @@ function promptUser() {
             };
         })
 }
+
+
+function promptAddDepartment() {
+    inquirer.prompt(
+        [
+            {
+                type: "input",
+                name: "department",
+                message: "What is the name of the department you would like to add?"
+            }
+        ])
+        .then(function (answer) {
+            let departmentName = answer.department;
+            controller.addDepartment(departmentName, function(res){
+                console.table(res);
+                promptUser();
+            });
+        });
+}
+
+
+
+
+
+
+
+
 
 promptUser();

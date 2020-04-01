@@ -1,8 +1,13 @@
 const orm = require("../models/orm.js")
 
 const controller = {
-    addDepartment: function (){
-
+    addDepartment: function (departmentName, cb){
+        // "John", "Doe", 1, 3
+        // "'John', 'Doe', 1, 3"
+        console.log(typeof(departmentName))
+        orm.create("department", "name", departmentName, function(res){
+            cb(res)
+        })
     },
     addRole: function(){
 

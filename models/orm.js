@@ -13,18 +13,13 @@ const orm = {
       });
     },
     create: function(table, cols, vals, cb) {
-      let queryString = "INSERT INTO " + table;
-  
-      queryString += " (";
-      queryString += cols.toString();
-      queryString += ") ";
-      queryString += "VALUES (";
-      queryString += printQuestionMarks(vals.length);
-      queryString += ") ";
-  
+      
+      let queryString = `INSERT INTO ${table} (${cols}) VALUES ("${vals}");`
+      
+
       console.log(queryString);
   
-      connection.query(queryString, vals, function(err, result) {
+      connection.query(queryString, function(err, result) {
         if (err) {
           throw err;
         }
