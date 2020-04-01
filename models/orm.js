@@ -4,12 +4,12 @@ const connection = require("../config/connection.js");
 // Object for all our SQL statement functions.
 const orm = {
     all: function(tableInput, cb) {
-      let queryString = "SELECT * FROM " + tableInput + ";";
-      connection.query(queryString, function(err, result) {
+      let queryString = `SELECT * FROM ${tableInput};`;
+      connection.query(queryString, function(err, res) {
         if (err) {
           throw err;
         }
-        cb(result);
+        cb(res);
       });
     },
     create: function(table, cols, vals, cb) {

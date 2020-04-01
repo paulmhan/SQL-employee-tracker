@@ -2,6 +2,7 @@ const inquirer = require("inquirer");
 const cTable = require('console.table');
 const controller = require("./controllers/index.js")
 
+
 function promptUser() {
     inquirer
         .prompt([
@@ -36,18 +37,28 @@ function promptUser() {
                     controller.addEmployee();
                     break;
                 case "View All Departments":
-                    controller.viewDepartments();
+                    controller.viewDepartments(function (res) {
+                        console.table(res)
+                        promptUser();
+                    });
                     break;
                 case "View All Roles":
-                    controller.viewRoles();
+                    controller.viewRoles(function (res) {
+                        console.table(res)
+                        promptUser();
+                    });
                     break;
                 case "View All Employees":
-                    controller.viewEmployees();
+                    controller.viewEmployees(function (res) {
+                        console.table(res)
+                        promptUser();
+                    });
                     break;
                 case "Update Employee Role":
                     controller.updateEmployee();
                     break;
                 case "Exit":
+                    process.exit(-1);
                     return;
             };
         })
