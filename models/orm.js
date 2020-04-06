@@ -32,26 +32,6 @@ const orm = {
         })
 
     },
-
-
-
-
-    create: function(table, cols, vals, cb) {     
-      let queryString = `INSERT INTO ${table} (${cols}) VALUES ("${vals}");`
-      console.log(queryString);  
-      connection.query(queryString, function(err, result) {
-        if (err) {
-          throw err;
-        }
-        connection.query(`SELECT * FROM ${table} WHERE id = ${result.insertId} `, function(err,res){
-            if (err){
-                throw err;
-            }
-            cb(res);
-        })
-      });
-    },
-    // An example of objColVals would be {name: panther, sleepy: true}
     update: function(table, objColVals, condition, cb) {
       let queryString = "UPDATE " + table;
   

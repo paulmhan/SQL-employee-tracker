@@ -4,7 +4,7 @@ const orm = require("./models/orm.js")
 
 
 
-function promptUser() {
+promptUser = () => {
     inquirer
         .prompt([
             {
@@ -23,7 +23,7 @@ function promptUser() {
                 ]
             }
         ])
-        .then(function (answer) {
+        .then(answer => {
             switch (answer.action) {
                 case "Add Department":
                     promptAddDepartment();
@@ -35,25 +35,25 @@ function promptUser() {
                     promptAddEmployee();
                     break;
                 case "View All Departments":
-                    orm.all("department",function (res) {
+                    orm.all("department", res => {
                         console.table(res)
                         process.exit(-1);
                     });
                     break;
                 case "View All Roles":
-                    orm.all("role",function (res) {
+                    orm.all("role", res => {
                         console.table(res)
                         process.exit(-1);
                     });
                     break;
                 case "View All Employees":
-                    orm.all("employee",function (res) {
+                    orm.all("employee", res => {
                         console.table(res)
                         process.exit(-1);
                     });
                     break;
                 case "Update Employee Role":
-                    controller.updateEmployee();
+                    promptUpdateEmployee();
                     break;
                 case "Exit":
                     process.exit(-1);
@@ -72,9 +72,9 @@ promptAddDepartment = () => {
                 message: "What is the name of the department you would like to add?"
             }
         ])
-        .then(function (answer) {
+        .then(answer => {
             let departmentName = answer.department;
-            orm.addDepartment(departmentName, function (res) {
+            orm.addDepartment(departmentName, res => {
                 console.log(`${departmentName} was added!`);
                 process.exit(-1);               
             });
@@ -103,9 +103,9 @@ promptAddRole = () => {
                     choices: departmentNames
                 },
             ])
-            .then(function (answer) {
+            .then(answer => {
                 let departmentIndex = departmentNames.indexOf(answer.department) + 1;
-                orm.addRole(answer.role, answer.salary, departmentIndex, function (res) {
+                orm.addRole(answer.role, answer.salary, departmentIndex, res => {
                     console.log(`${answer.role} was added!`);
                     process.exit(-1);                  
                 });
@@ -137,12 +137,16 @@ promptAddEmployee = () => {
             ])
             .then(answer => {
                 let roleIndex = roleNames.indexOf(answer.role) + 1;
-                orm.addEmployee(answer.fName, answer.lName, roleIndex, function (res) {
+                orm.addEmployee(answer.fName, answer.lName, roleIndex, res => {
                     console.log(`${answer.fName} was added!`);
                     process.exit(-1);                  
                 });
             });
     })
+}
+
+promptUpdateEmployee = () => {
+
 }
 
 
