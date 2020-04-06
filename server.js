@@ -63,7 +63,7 @@ function promptUser() {
 }
 
 
-function promptAddDepartment() {
+promptAddDepartment = () => {
     inquirer.prompt(
         [
             {
@@ -81,7 +81,7 @@ function promptAddDepartment() {
         });
 }
 
-function promptAddRole() {
+promptAddRole = () => {
     orm.all("department", res => {
         let departmentNames = res.map(dept => dept.name);
         inquirer.prompt(
@@ -111,6 +111,38 @@ function promptAddRole() {
                 });
             });
     });
+}
+
+promptAddEmployee = () => {
+    orm.all("role", res => {
+        let roleNames = res.map(role => role.title);
+        inquirer.prompt(
+            [
+                {
+                    type: "input",
+                    name: "fName",
+                    message: "What is the employee's first name?"
+                },
+                {
+                    type: "input",
+                    name: "lName",
+                    message: "What is the employee's last name?"
+                },
+                {
+                    type: "list",
+                    name: "role",
+                    message: "What is the employee's role?",
+                    choices: roleNames
+                },
+            ])
+            .then(answer => {
+                let roleIndex = roleNames.indexOf(answer.role) + 1;
+                orm.addEmployee(answer.fName, answer.lName, roleIndex, function (res) {
+                    console.log(`${answer.fName} was added!`);
+                    process.exit(-1);                  
+                });
+            });
+    })
 }
 
 
