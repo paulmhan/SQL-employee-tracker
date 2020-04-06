@@ -10,12 +10,34 @@ const orm = {
         cb(res);
       });
     },
+    getDepartment: function(value,tableInput){
+        return new Promise(function(resolve,reject){
+            let queryString = `SELECT ${value} FROM ${tableInput}`;
+            connection.query(queryString, function(err,res){
+                if (err){
+                    reject(err);
+                }; 
+                const departmentList = [];
+                for(let i = 0; i < res.length; i++){
+                    departmentList.push(res[i].name);
+                };
+                resolve(departmentList);
+            })
+        })
+    },
     addDepartment: function(department, cb){
         let queryString = `INSERT INTO department (name) VALUES ("${department}")`;
         connection.query(queryString, function(err, res) {
             if(err) throw err;
             cb(res);
         });
+    },
+    addRole: function(title, salary, departmentNum, cb){
+        let queryString = "INSERT INTO role (title, salary, department_id) VALUES (?,?,?)";
+        connection.query(queryString, [title, salary, departmentNum], function(err,res){
+            if (err) throw err;
+            cb(res);
+        })
     },
 
 

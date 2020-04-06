@@ -83,7 +83,7 @@ function promptAddDepartment() {
 }
 
 function promptAddRole() {
-    controller.viewDepartments(function (res) {
+    orm.getDepartment("name", "department").then((res) => {
         let departmentNames = res.map(dept => dept.name);
         inquirer.prompt(
             [
@@ -93,7 +93,7 @@ function promptAddRole() {
                     message: "What is the title of this role?"
                 },
                 {
-                    type: "input",
+                    type: "number",
                     name: "salary",
                     message: "What is the salary for this role?"
                 },
@@ -105,10 +105,10 @@ function promptAddRole() {
                 },
             ])
             .then(function (answer) {
-                let newRole = [answer.role, answer.salary, answer.department];
-                controller.addRole(newRole, function (res) {
+                let departmentIndex = departmentNames.indexOf(answer.department) + 1;
+                orm.addRole(answer.title, answer.salary, departmentIndex, function (res) {
                     console.table(res);
-                    promptUser();
+                    process.exit(-1);                  
                 });
             });
     });
