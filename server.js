@@ -1,6 +1,6 @@
 const inquirer = require("inquirer");
 const cTable = require('console.table');
-const controller = require("./controllers/index.js")
+const orm = require("./models/orm.js")
 
 
 
@@ -36,21 +36,21 @@ function promptUser() {
                     controller.addEmployee();
                     break;
                 case "View All Departments":
-                    controller.viewDepartments(function (res) {
+                    orm.all("department",function (res) {
                         console.table(res)
-                        promptUser();
+                        process.exit(-1);
                     });
                     break;
                 case "View All Roles":
-                    controller.viewRoles(function (res) {
+                    orm.all("role",function (res) {
                         console.table(res)
-                        promptUser();
+                        process.exit(-1);
                     });
                     break;
                 case "View All Employees":
-                    controller.viewEmployees(function (res) {
+                    orm.all("employee",function (res) {
                         console.table(res)
-                        promptUser();
+                        process.exit(-1);
                     });
                     break;
                 case "Update Employee Role":
