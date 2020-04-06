@@ -75,9 +75,9 @@ function promptAddDepartment() {
         ])
         .then(function (answer) {
             let departmentName = answer.department;
-            controller.addDepartment(departmentName, function (res) {
-                console.table(res);
-                promptUser();
+            orm.addDepartment(departmentName, function (res) {
+                console.log(`${departmentName} was added!`);
+                process.exit(-1);               
             });
         });
 }

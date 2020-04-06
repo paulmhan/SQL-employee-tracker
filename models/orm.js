@@ -6,12 +6,28 @@ const orm = {
     all: function(tableInput, cb) {
       let queryString = `SELECT * FROM ${tableInput};`;
       connection.query(queryString, function(err, res) {
-        if (err) {
-          throw err;
-        }
+        if (err) throw err;
         cb(res);
       });
     },
+    addDepartment: function(department, cb){
+        let queryString = `INSERT INTO department (name) VALUES ("${department}")`;
+        connection.query(queryString, function(err, res) {
+            if(err) throw err;
+            cb(res);
+        });
+    },
+
+
+
+
+
+
+
+
+
+
+
     create: function(table, cols, vals, cb) {     
       let queryString = `INSERT INTO ${table} (${cols}) VALUES ("${vals}");`
       console.log(queryString);  
