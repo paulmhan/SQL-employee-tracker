@@ -19,9 +19,6 @@ function promptUser() {
                     "View All Roles",
                     "View All Employees",
                     "Update Employee Role",
-                    // "Remove employee",
-                    // "View all employees by department",
-                    // "View all employees by manager",
                     "Exit"
                 ]
             }
@@ -104,7 +101,7 @@ function promptAddRole() {
                     type: "list",
                     name: "department",
                     message: "Which department is this role in?",
-                    choice: departmentNames
+                    choices: departmentNames
                 },
             ])
             .then(function (answer) {

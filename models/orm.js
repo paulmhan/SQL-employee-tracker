@@ -12,13 +12,9 @@ const orm = {
         cb(res);
       });
     },
-    create: function(table, cols, vals, cb) {
-      
+    create: function(table, cols, vals, cb) {     
       let queryString = `INSERT INTO ${table} (${cols}) VALUES ("${vals}");`
-      
-
-      console.log(queryString);
-  
+      console.log(queryString);  
       connection.query(queryString, function(err, result) {
         if (err) {
           throw err;
@@ -48,21 +44,7 @@ const orm = {
   
         cb(result);
       });
-    },
-    delete: function(table, catId, cb){
-      let queryString = "DELETE FROM " + table;
-      queryString += " WHERE id = ";
-      queryString += catId;
-      console.log(queryString);
-      connection.query(queryString, function(err, result) {
-        if (err) {
-          throw err;
-        }
-        console.log(result);
-        cb(result);
-      });
-    }
-  
+    } 
   };
   
   // Export the orm object for the model (cat.js).
