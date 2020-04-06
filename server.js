@@ -33,7 +33,6 @@ function promptUser() {
                     break;
                 case "Add Employee":
                     promptAddEmployee();
-                    controller.addEmployee();
                     break;
                 case "View All Departments":
                     orm.all("department",function (res) {
@@ -113,6 +112,7 @@ function promptAddRole() {
             });
     });
 }
+
 
 
 

@@ -24,6 +24,14 @@ const orm = {
             cb(res);
         })
     },
+    addEmployee: function(fName, lName, roleNum, cb){
+        let queryString = "INSERT INTO employee (first_name, lat_name, role_id, manager_id) VALUES (?,?,?,?)"
+        connection.query(queryString, [fName, lName, roleNum], function(err,res){
+            if (err) throw err;
+            cb(res);
+        })
+
+    }
 
 
 
