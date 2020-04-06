@@ -83,7 +83,7 @@ function promptAddDepartment() {
 }
 
 function promptAddRole() {
-    orm.getDepartment("name", "department").then((res) => {
+    orm.all("department", res => {
         let departmentNames = res.map(dept => dept.name);
         inquirer.prompt(
             [
@@ -106,8 +106,8 @@ function promptAddRole() {
             ])
             .then(function (answer) {
                 let departmentIndex = departmentNames.indexOf(answer.department) + 1;
-                orm.addRole(answer.title, answer.salary, departmentIndex, function (res) {
-                    console.table(res);
+                orm.addRole(answer.role, answer.salary, departmentIndex, function (res) {
+                    console.log(`${answer.role} was added!`);
                     process.exit(-1);                  
                 });
             });
