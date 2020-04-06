@@ -28,13 +28,6 @@ const orm = {
 
 
 
-
-
-
-
-
-
-
     create: function(table, cols, vals, cb) {     
       let queryString = `INSERT INTO ${table} (${cols}) VALUES ("${vals}");`
       console.log(queryString);  
