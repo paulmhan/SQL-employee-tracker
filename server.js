@@ -142,7 +142,7 @@ promptAddEmployee = () => {
                     process.exit(-1);
                 });
             });
-    })
+    });
 }
 
 promptUpdateEmployee = () => {
@@ -172,16 +172,8 @@ promptUpdateEmployee = () => {
                     process.exit(-1);
                 });
             });
-    })})
+    })});
 }
-
-
-
-
-
-
-
-
 
 
 
