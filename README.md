@@ -2,9 +2,9 @@
 A content management system application that provides an easier solution for managing a company's employees. 
 
 The user can:
-    * Add departments, roles, employees
-    * View departments, role, employees
-    * Update employee roles
+    - Add departments, roles, employees
+    - View departments, role, employees
+    - Update employee roles
 
 ## Installation
 
