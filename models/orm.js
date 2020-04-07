@@ -32,21 +32,11 @@ const orm = {
         })
 
     },
-    update: (table, objColVals, condition, cb) => {
-      let queryString = "UPDATE " + table;
-  
-      queryString += " SET ";
-      queryString += objToSql(objColVals);
-      queryString += " WHERE ";
-      queryString += condition;
-  
-      console.log(queryString);
-      connection.query(queryString, function(err, result) {
-        if (err) {
-          throw err;
-        }
-  
-        cb(result);
+    update: (fName, roleNum, cb) => {
+        let queryString = `UPDATE employee SET role_id = ${roleNum} WHERE first_name = "${fName}"`
+        connection.query(queryString, (err, res) => {
+        if (err) throw err;
+        cb(res);
       });
     } 
   };

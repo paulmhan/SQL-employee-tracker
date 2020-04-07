@@ -167,8 +167,8 @@ promptUpdateEmployee = () => {
             ])
             .then(answer => {
                 let roleIndex = roleNames.indexOf(answer.role) + 1;
-                orm.addEmployee(answer.fName, answer.lName, roleIndex, res => {
-                    console.log(`${answer.fName} was added!`);
+                orm.update(answer.name, roleIndex, res => {
+                    console.log(`${answer.name} was updated!`);
                     process.exit(-1);
                 });
             });
