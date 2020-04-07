@@ -148,6 +148,8 @@ promptAddEmployee = () => {
 promptUpdateEmployee = () => {
     orm.all("employee", res => {
         let employeeNames = res.map(employee => employee.first_name);
+        orm.all("role", res2 => {
+            let roleNames = res2.map(role => role.title);
         inquirer.prompt(
             [
                 {
@@ -157,9 +159,10 @@ promptUpdateEmployee = () => {
                     choices: employeeNames
                 },
                 {
-                    type: "input",
+                    type: "list",
                     name: "role",
-                    message: "Which role would you like to move them to?"
+                    message: "Which role would you like to move them to?",
+                    choices: roleNames
                 },
             ])
             .then(answer => {
@@ -169,7 +172,8 @@ promptUpdateEmployee = () => {
                     process.exit(-1);
                 });
             });
-    })}
+    })})
+}
 
 
 
