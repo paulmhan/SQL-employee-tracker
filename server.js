@@ -146,7 +146,26 @@ promptAddEmployee = () => {
 }
 
 promptUpdateEmployee = () => {
-
+    inquirer.prompt(
+        [
+            {
+                type: "input",
+                name: "fName",
+                message: "What is the fist name of the employee whose role you would like to update?"
+            },
+            {
+                type: "input",
+                name: "role",
+                message: "Which role would you like to move them to?"
+            },
+        ])
+        .then(answer => {
+            let roleIndex = roleNames.indexOf(answer.role) + 1;
+            orm.addEmployee(answer.fName, answer.lName, roleIndex, res => {
+                console.log(`${answer.fName} was added!`);
+                process.exit(-1);                  
+            });
+        });
 }
 
 
