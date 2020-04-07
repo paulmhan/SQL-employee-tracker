@@ -76,7 +76,7 @@ promptAddDepartment = () => {
             let departmentName = answer.department;
             orm.addDepartment(departmentName, res => {
                 console.log(`${departmentName} was added!`);
-                process.exit(-1);               
+                process.exit(-1);
             });
         });
 }
@@ -107,7 +107,7 @@ promptAddRole = () => {
                 let departmentIndex = departmentNames.indexOf(answer.department) + 1;
                 orm.addRole(answer.role, answer.salary, departmentIndex, res => {
                     console.log(`${answer.role} was added!`);
-                    process.exit(-1);                  
+                    process.exit(-1);
                 });
             });
     });
@@ -139,34 +139,37 @@ promptAddEmployee = () => {
                 let roleIndex = roleNames.indexOf(answer.role) + 1;
                 orm.addEmployee(answer.fName, answer.lName, roleIndex, res => {
                     console.log(`${answer.fName} was added!`);
-                    process.exit(-1);                  
+                    process.exit(-1);
                 });
             });
     })
 }
 
 promptUpdateEmployee = () => {
-    inquirer.prompt(
-        [
-            {
-                type: "input",
-                name: "fName",
-                message: "What is the fist name of the employee whose role you would like to update?"
-            },
-            {
-                type: "input",
-                name: "role",
-                message: "Which role would you like to move them to?"
-            },
-        ])
-        .then(answer => {
-            let roleIndex = roleNames.indexOf(answer.role) + 1;
-            orm.addEmployee(answer.fName, answer.lName, roleIndex, res => {
-                console.log(`${answer.fName} was added!`);
-                process.exit(-1);                  
+    orm.all("employee", res => {
+        let employeeNames = res.map(employee => employee.first_name);
+        inquirer.prompt(
+            [
+                {
+                    type: "list",
+                    name: "name",
+                    message: "What is this employee's name?",
+                    choices: employeeNames
+                },
+                {
+                    type: "input",
+                    name: "role",
+                    message: "Which role would you like to move them to?"
+                },
+            ])
+            .then(answer => {
+                let roleIndex = roleNames.indexOf(answer.role) + 1;
+                orm.addEmployee(answer.fName, answer.lName, roleIndex, res => {
+                    console.log(`${answer.fName} was added!`);
+                    process.exit(-1);
+                });
             });
-        });
-}
+    })}
 
 
 
