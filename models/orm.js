@@ -30,7 +30,6 @@ const orm = {
             if (err) throw err;
             cb(res);
         })
-
     },
     update: (fName, roleNum, cb) => {
         let queryString = `UPDATE employee SET role_id = ${roleNum} WHERE first_name = "${fName}"`

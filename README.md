@@ -29,3 +29,4 @@ This application can be used to keep track of all departments, roles, and employ
 - [MySQL](https://www.npmjs.com/package/mysql)
 - [InquirerJs](https://www.npmjs.com/package/inquirer/v/0.2.3)
 - [console.table](https://www.npmjs.com/package/console.table)
+
